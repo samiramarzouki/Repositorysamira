@@ -1,4 +1,5 @@
 pipeline {
+<<<<<<< HEAD
     agent none
     stages {
         stage('Build') {
@@ -40,6 +41,26 @@ pipeline {
                     archiveArtifacts 'dist/add2vals'
                 }
             }
+=======
+  agent none
+  stages {
+    stage('Build') {
+      agent {
+        docker {
+          image 'python:2-alpine'
+>>>>>>> fd49669402cb22083383e19eb9e7ad49ea4d354e
         }
+
+      }
+      steps {
+        sh 'python -m py_compile sources/add2vals.py sources/calc.py'
+        stash(name: 'compiled-results', includes: 'sources/*.py*')
+      }
     }
+<<<<<<< HEAD
 }
+=======
+
+  }
+}
+>>>>>>> fd49669402cb22083383e19eb9e7ad49ea4d354e
